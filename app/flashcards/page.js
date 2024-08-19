@@ -48,7 +48,7 @@ export default function Flashcards() {
         <Grid container spacing = {3} sx = {{
             mt: 4
         }}>
-            {flashcards.map((flashcard, index) =>(
+            {flashcards.map((flashcard, index) => (
                 <Grid item xs={12} sm={6} md={4} key={index}>
                     <Card>
                         <CardActionArea onClick={() => {

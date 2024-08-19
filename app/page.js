@@ -1,5 +1,7 @@
 "use client"
 import Image from "next/image";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import getStripe from "@/utils/get-stripe"
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button, Toolbar, Typography, Container, AppBar, Box, Grid} from "@mui/material";
@@ -55,48 +57,130 @@ export default function Home() {
           </SignedIn>
         </Toolbar>
       </AppBar>
+      <br/>
 
       <Box 
-        sx ={{
+        sx={{
           textAlign: 'center',
           my: 4,
         }}
       >
-        <Typography variant = "h2" gutterBottom>Welcome to Flashcard SaaS</Typography>
-        <Typography variant = "h5" gutterBottom>
+        <Typography variant="h2" gutterBottom>Welcome to Flashcard SaaS</Typography>
+        <Typography variant="h5" gutterBottom>
           {' '}
           The easiest way to make flashcards from your text
         </Typography>
-        <Button variant='contained' color='primary' sx= {{mt: 2}}>Get Started</Button>
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>
+          <Button 
+            variant='contained' 
+            color='primary' 
+            href="/generate"
+          >
+            Create New Set
+          </Button>
+          <Button 
+            variant='contained' 
+            color='secondary' 
+            href="/flashcards"
+          >
+            View Current Sets
+          </Button>
+        </Box>
       </Box>
-      <Box sx= {{my: 6}}>
-        <Typography variant = "h4" gutterBottom>
-          Features
-        </Typography>
-        <Grid container spacing = {4}>
-          <Grid item xs = {12} md = {4}>
-            <Typography variant = "h6" gutterBottom>Easy Text Input </Typography>
-            <Typography> 
-              {' '} 
-              Simply Input Your Text and let our software do the rest. Creating flashcards has never been easier.
+    
+    <br/>
+
+    <Box sx={{ my: 6, textAlign: "center" }}>
+      <Typography variant="h4" gutterBottom sx={{ marginBottom: '20px' }}>
+        Features
+      </Typography>
+      <Grid container spacing={4}>
+        <Grid item xs={12} md={4}>
+          <Box
+            sx={{
+              p: 3,
+              border: "1px solid",
+              borderColor: "grey.300",
+              borderRadius: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Easy Text Input
             </Typography>
-          </Grid>
-          <Grid item xs = {12} md = {4}>
-            <Typography variant = "h6" gutterBottom>Smart Flashcards </Typography>
-            <Typography> 
-              {' '}
-              Our AI intelligently breaks down your texts into concise flashcards, perfect for studying
+            <Typography>
+              Just input your text, and our software does the rest. Creating flashcards has never been easier.
             </Typography>
-          </Grid>
-          <Grid item xs = {12} md = {4}>
-            <Typography variant = "h6" gutterBottom>Accessible Anywhere </Typography>
-            <Typography> 
-              {' '} 
+            <Image
+              src="/text.png"
+              alt="Easy Text Input"
+              width={50} // Adjust width as needed
+              height={50} // Adjust height as needed
+              
+              style={{ marginTop: "20px" }} // Ensure image is at the bottom
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Box
+            sx={{
+              p: 3,
+              border: "1px solid",
+              borderColor: "grey.300",
+              borderRadius: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Smart Flashcards
+            </Typography>
+            <Typography>
+              AI intelligently breaks down your texts into concise flashcards, perfect for studying.
+            </Typography>
+            <Image
+              src="/smart.jpg"
+              alt="Smart Flashcards"
+              width={50} // Adjust width as needed
+              height={50} // Adjust height as needed
+              style={{ marginTop: "20px" }} // Ensure image is at the bottom
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Box
+            sx={{
+              p: 3,
+              border: "1px solid",
+              borderColor: "grey.300",
+              borderRadius: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Accessible Anywhere
+            </Typography>
+            <Typography>
               Access your flashcards from any device, at any time. Study on the go with ease.
             </Typography>
-          </Grid>
+            <Image
+              src="/access.png"
+              alt="Accessible Anywhere"
+              width={50} // Adjust width as needed
+              height={50} // Adjust height as needed
+              style={{ marginTop: "20px" }} // Ensure image is at the bottom
+            />
+          </Box>
         </Grid>
-      </Box>
+      </Grid>
+    </Box>
+
+
       <Box sx = {{my: 6, textAlign: 'center'}}>
         <Typography variant = "h4" gutterBottom>
           Pricing
@@ -115,7 +199,7 @@ export default function Home() {
                 {' '} 
                 Basic flashcard features and limited storage.
               </Typography>
-              <Button variant = "contained" color = "primary" sx={{mt: 2}}>
+              <Button variant = "contained" color = "primary" sx={{mt: 2}} onClick={handleSubmit}>
                 Choose basics
               </Button>
             </Box>
