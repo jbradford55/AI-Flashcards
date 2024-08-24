@@ -105,7 +105,19 @@ export default function Generate() {
   };
 
   return (
-    <Container maxWidth="md">
+    <Container
+      maxWidth="lg"  // Increased the maxWidth to 'lg'
+      sx={{
+        color: "#fff",
+        backgroundColor: "#121212",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "24px", // Added padding for better spacing
+      }}
+    >
       <Box
         sx={{
           mt: 4,
@@ -113,10 +125,11 @@ export default function Generate() {
           display: "flex",
           flexDirection: "column",
           alignItems: 'center',
+          width: "100%",
         }}
       >
-        <Typography variant="h4">Generate Flashcards</Typography>
-        <Paper sx={{ p: 4, width: "100%" }}>
+        <Typography variant="h4" sx={{ mb: 4 }}>Generate Flashcards</Typography>
+        <Paper sx={{ p: 4, width: "100%", backgroundColor: "#1e1e1e", color: "#fff" }}>
           <TextField
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -125,9 +138,24 @@ export default function Generate() {
             multiline
             rows={4}
             variant="outlined"
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              backgroundColor: "#333333",
+              input: { color: "#fff" },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "#555555",
+                },
+                "&:hover fieldset": {
+                  borderColor: "#888888",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#888888",
+                },
+              },
+            }}
           />
-          <Button variant="contained" color="primary" onClick={handleSubmit} fullWidth>
+          <Button variant="contained" color="primary" onClick={handleSubmit} fullWidth sx={{ backgroundColor: "#4a90e2" }}>
             Submit
           </Button>
         </Paper>
@@ -151,7 +179,7 @@ export default function Generate() {
           <Grid container spacing={3}>
             {flashcards.map((flashcard, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card>
+                <Card sx={{ backgroundColor: "#1e1e1e", color: "#fff" }}>
                   <CardActionArea onClick={() => handleCardClick(index)}>
                     <CardContent>
                       <Box
@@ -226,11 +254,12 @@ export default function Generate() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             variant="outlined"
+            sx={{ backgroundColor: "#333333", input: { color: "#fff" } }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={saveFlashcards}>Save</Button>
+          <Button onClick={handleClose} sx={{ color: "#fff" }}>Cancel</Button>
+          <Button onClick={saveFlashcards} sx={{ color: "#fff" }}>Save</Button>
         </DialogActions>
       </Dialog>
     </Container>
